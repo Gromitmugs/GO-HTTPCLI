@@ -4,6 +4,8 @@ Copyright © 2022 NAME HERE <EMAIL ADDRESS>
 package cmd
 
 import (
+	"fmt"
+
 	"github.com/spf13/cobra"
 )
 
@@ -15,8 +17,11 @@ var putCmd = &cobra.Command{
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		url := string(args[0])
-		body := str2JSON(json_input)
-		postputdeleteREQ(url, body, "PUT")
+		body, err := Str2JSON(json_input)
+		if err != nil {
+			fmt.Printf("Error: %s", err.Error())
+		}
+		Request(url, nil, body, PUT)
 	},
 }
 

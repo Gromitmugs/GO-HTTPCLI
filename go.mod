@@ -1,4 +1,4 @@
-module github.com/Gromitmugs/httpcli2
+module github.com/Gromitmugs/GO-HTTPCLI
 
 go 1.19
 
