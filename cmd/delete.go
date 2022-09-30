@@ -1,6 +1,8 @@
 package cmd
 
 import (
+	"fmt"
+
 	"github.com/spf13/cobra"
 )
 
@@ -11,8 +13,11 @@ var deleteCmd = &cobra.Command{
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		url := string(args[0])
-		body := str2JSON(json_input)
-		postputdeleteREQ(url, body, "DELETE")
+		body, err := Str2JSON(json_input)
+		if err != nil {
+			fmt.Printf("Error: %s", err.Error())
+		}
+		Request(url, nil, body, DELETE)
 	},
 }
 
